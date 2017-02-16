@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+
+namespace Stack_Undertow.Models
+{
+    public class Answer
+    {
+        public int Id { get; set; }
+        public string Body { get; set; }
+        public int Score { get; set; }
+
+        public int QuestionId { get; set; }
+
+        [ForeignKey("QuestionId")]
+        public virtual ApplicationUser Question { get; set; }
+    }
+}
