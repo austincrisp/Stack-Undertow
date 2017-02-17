@@ -15,6 +15,6 @@ namespace Stack_Undertow.Models
         public int QuestionId { get; set; }
 
         [ForeignKey("QuestionId")]
-        public virtual ApplicationUser Question { get; set; }
+        public virtual Question Question { get; set; }
     }
 }

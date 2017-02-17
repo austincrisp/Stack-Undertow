@@ -12,7 +12,7 @@ namespace Stack_Undertow.Models
         public string Title { get; set; }
         public string Body { get; set; }
 
-        public int OwnerId { get; set; }
+        public string OwnerId { get; set; }
 
         [ForeignKey("OwnerId")]
         public virtual ApplicationUser Owner { get; set; }

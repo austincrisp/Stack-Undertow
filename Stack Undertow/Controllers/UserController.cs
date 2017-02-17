@@ -13,10 +13,11 @@ namespace Stack_Undertow.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: User
-        public ActionResult Index()
+        [Route("u/{username}")]
+        public ActionResult Index(string userName)
         {
-            return View();
+            ApplicationUser userInstance = db.Users.Where(u => u.UserName == userName).FirstOrDefault();
+            return View(userInstance);
         }
     }
 }
