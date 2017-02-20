@@ -18,7 +18,8 @@ namespace Stack_Undertow.Controllers
         // GET: Answer
         public ActionResult Index()
         {
-            return View();
+            var answers = db.Answers.Include(a => a.Question);
+            return View(answers.ToList());
         }
 
         // GET: Answer/Create
@@ -30,13 +31,13 @@ namespace Stack_Undertow.Controllers
         // POST: Answer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Body,Score,QuestionId")] Answer answer)
+        public ActionResult Create([Bind(Include = "Id,Body,QuestionId")] Answer answer)
         {
             if (ModelState.IsValid)
             {
                 db.Answers.Add(answer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Answer", new { id = answer.QuestionId });
             }
 
             return View(answer);
@@ -59,7 +60,7 @@ namespace Stack_Undertow.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Body,Score,QuestionId")] Answer answer)
+        public ActionResult Edit([Bind(Include = "Id,Body,QuestionId")] Answer answer)
         {
             if (ModelState.IsValid)
             {

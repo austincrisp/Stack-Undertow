@@ -28,6 +28,10 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">@question.Title</h3>
                         </div>
+                        <div class="panel-info">
+                            @Html.ActionLink("Edit", "Edit", new { id = question.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = question.Id })
+                        </div>
                         <div class="panel-body">@question.Body</div>
                     </div>
                 }
